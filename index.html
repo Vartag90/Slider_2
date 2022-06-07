@@ -2,33 +2,37 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<title>CSS 1</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Slider 1</title>
 </head>
 
 <body>
 
-	<div>
-		<p class="green"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span> Repellat sapiente,
-			praesentium corporis
-			quae magnam
-			corrupti, eligendi eum cum optio laudantium debitis animi autem? Autem, debitis culpa laborum temporibus error
-			officiis repellat laboriosam nemo voluptate, dolor amet deleniti sint. Quibusdam nostrum hic doloremque porro
-			labore facere deleniti eos dicta error, cum incidunt modi ipsam officiis! Unde facilis fugiat esse aliquid numquam
-			vel at nobis necessitatibus aut cumque. Cupiditate repellendus autem et voluptatibus, porro quos, sapiente
-			corrupti reiciendis modi odit inventore esse, fuga expedita! Maxime blanditiis dolorem dolore ex totam? Commodi
-			officiis nesciunt magni quidem animi? Libero laboriosam rerum ipsum expedita aut.</p>
-		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. <span class="green">Voluptatibus, consequatur. Nesciunt
-				repellendus impedit</span>
-			eligendi odit tenetur, eos similique ullam. Non accusamus molestiae tempora doloribus ipsum! Quasi quibusdam
-			deserunt molestiae rem.</p>
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide active"><img src="img/cover.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="img/like.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/1.jpg" alt=""></div>
+        </div>
 
-	</div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
 
 
+    <script src="js/script.js"></script>
 </body>
 
 </html>

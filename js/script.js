@@ -10,16 +10,17 @@ const sliderItems = parentSlider.querySelectorAll('.slider__item');
 const itemsCount = sliderItems.length;
 const btnPrev = parentSlider.querySelector('.btn-prev');
 const btnNext = parentSlider.querySelector('.btn-next');
-const itemWidth = sliderContainer.clientWidth / slidesToShow;
+const itemWidth = sliderContainer.offsetWidth / slidesToShow;
 const movePosition = itemWidth * slidesToScroll;
+let radioButtons = parentSlider.querySelectorAll("input[type='radio']");
 let counter = 0;
 let timerId;
+let pausedId;;
+//radioButtons[0].attr('checked', true);
 
 sliderItems.forEach(function(elem) {
     elem.style.minWidth = `${itemWidth}px`;
 })
-
-
 
 function next() {
     const itemLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
@@ -41,31 +42,25 @@ function prev() {
 }
 
 
-function slide() {
-    timerId = setInterval(next, 1000);
-}
-
-window.addEventListener('load', slide);
-
-btnNext.addEventListener('click', next);
-btnNext.addEventListener('click', function() {
+function paused() {
+    this.removeEventListener('click', paused);
     clearInterval(timerId);
-    setTimeout(slide, 5000);
-});
-
-
-btnPrev.addEventListener('click', prev);
-//btnPrev.addEventListener('click', paused);
-
-
-
-
-
+    clearTimeout(pausedId);
+    return pausedId = setTimeout(function() {
+        clearInterval(timerId);
+        timerId = setInterval(next, 1000);
+        this.addEventListener('click', paused);
+    }, 5000);
+}
 
 const setPosition = () => sliderBody.style.transform = `translateX(${position}px)`;
 
 const checkPosition = () => {
+
+
     console.log(counter);
+    //console.log(radioButtons[counter].id);
+    //console.log(radioButtons[counter]);
     if (counter < slidesToShow) {
         if (counter >= itemsCount - slidesToShow + 1) {
             sliderBody.style.transform = `translateX(0px)`;
@@ -91,12 +86,50 @@ const checkPosition = () => {
             sliderBody.style.transition = 0.2 + `s`;
         }
     }
-
-    //btnPrev.disabled = position === 0;
-    //btnNext.disabled = position <= -(itemsCount - slidesToShow) * itemWidth;
 }
 
 
+function addSettings() {
+    timerId = setInterval(next, 1000);
+    btnNext.addEventListener('click', next);
+    btnNext.addEventListener('click', paused);
+    btnPrev.addEventListener('click', paused);
+    btnPrev.addEventListener('click', prev);
+}
 
+window.addEventListener('load', function() {
+    addSettings();
+    //addRadio();
+});
+
+window.addEventListener('focus', function() {
+    clearTimeout(pausedId);
+    clearInterval(timerId);
+    addSettings();
+});
+
+
+
+window.addEventListener('blur', function() {
+    clearTimeout(pausedId);
+    clearInterval(timerId);
+});
 
 checkPosition();
+
+(function addRadio() {
+    let radioBlock = document.createElement('div');
+    parentSlider.appendChild(radioBlock);
+
+    for (let i = 0; i < itemsCount; i++) {
+        let radioButton = document.createElement('input');
+        radioButton.type = 'radio';
+        radioButton.name = 'slider-buttons';
+        radioButton.id = i;
+        radioButton.value = i;
+        radioBlock.appendChild(radioButton);
+        //console.log(i);
+        //console.log(radioButton.id);
+    }
+    radioBlock.className = 'btns-radio';
+})();

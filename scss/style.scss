@@ -87,9 +87,16 @@ h6 {
     font-weight: 400;
 }
 
+.container {
+    max-width: 1030px;
+    margin: 0 auto;
+}
+
+$sliderWidth: 600px;
 .slider {
+    position: relative;
     &__container {
-        width: 600px;
+        width: $sliderWidth;
         overflow: hidden;
         background-color: pink;
         margin: 0 auto;
@@ -100,7 +107,6 @@ h6 {
         transition: 0.2s;
     }
     &__item {
-        height: 400px;
         text-align: center;
     }
     &__icon {
@@ -122,9 +128,42 @@ h6 {
         line-height: 34px;
         color: #848789;
         font-style: italic;
+        padding: 0 35px;
     }
     &__buttons {
         display: flex;
+        position: absolute;
+        width: $sliderWidth;
+        top: 50%;
+        .btn {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transform: translateY(-50%) rotate(45deg);
+            &:hover {
+                border-color: green;
+            }
+        }
+        .btn-prev {
+            position: absolute;
+            left: -20px;
+            border-bottom: 3px solid red;
+            border-left: 3px solid red;
+        }
+        .btn-next {
+            position: absolute;
+            right: -20px;
+            border-top: 3px solid red;
+            border-right: 3px solid red;
+        }
+    }
+    .btns-radio {
+        width: $sliderWidth;
+        margin: 10px auto 0 auto;
+        display: flex;
         justify-content: center;
+        input:not(:last-child) {
+            margin: 0 10px 0 0;
+        }
     }
 }

@@ -86,6 +86,15 @@ h6 {
   font-weight: 400;
 }
 
+.container {
+  max-width: 1030px;
+  margin: 0 auto;
+}
+
+.slider {
+  position: relative;
+}
+
 .slider__container {
   width: 600px;
   overflow: hidden;
@@ -104,7 +113,6 @@ h6 {
 }
 
 .slider__item {
-  height: 400px;
   text-align: center;
 }
 
@@ -130,13 +138,56 @@ h6 {
   line-height: 34px;
   color: #848789;
   font-style: italic;
+  padding: 0 35px;
 }
 
 .slider__buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: absolute;
+  width: 600px;
+  top: 50%;
+}
+
+.slider__buttons .btn {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+      -ms-transform: translateY(-50%) rotate(45deg);
+          transform: translateY(-50%) rotate(45deg);
+}
+
+.slider__buttons .btn:hover {
+  border-color: green;
+}
+
+.slider__buttons .btn-prev {
+  position: absolute;
+  left: -20px;
+  border-bottom: 3px solid red;
+  border-left: 3px solid red;
+}
+
+.slider__buttons .btn-next {
+  position: absolute;
+  right: -20px;
+  border-top: 3px solid red;
+  border-right: 3px solid red;
+}
+
+.slider .btns-radio {
+  width: 600px;
+  margin: 10px auto 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.slider .btns-radio input:not(:last-child) {
+  margin: 0 10px 0 0;
 }

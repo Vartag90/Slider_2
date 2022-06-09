@@ -88,15 +88,54 @@ h6 {
 }
 
 .container {
-    max-width: 1030px;
+    @media (min-width: 1400px) {
+        max-width: 1300px;
+    }
+    @media (max-width: 1400px) {
+        max-width: 1000px;
+    }
+    @media (max-width: 1200px) {
+        max-width: 800px;
+    }
+    @media (max-width: 992px) {
+        max-width: 700px;
+    }
+    @media (max-width: 768px) {
+        max-width: 500px;
+    }
+    @media (max-width: 576px) {
+        max-width: 400px;
+    }
     margin: 0 auto;
 }
 
-$sliderWidth: 600px;
+$sliderWidth1: 1200px;
+$sliderWidth2: 900px;
+$sliderWidth3: 700px;
+$sliderWidth4: 550px;
+$sliderWidth5: 400px;
+$sliderWidth6: 350px;
 .slider {
     position: relative;
     &__container {
-        width: $sliderWidth;
+        @media (min-width: 1400px) {
+            width: $sliderWidth1;
+        }
+        @media (max-width: 1400px) {
+            width: $sliderWidth2;
+        }
+        @media (max-width: 1200px) {
+            width: $sliderWidth3;
+        }
+        @media (max-width: 992px) {
+            width: $sliderWidth4;
+        }
+        @media (max-width: 768px) {
+            width: $sliderWidth5;
+        }
+        @media (max-width: 576px) {
+            width: $sliderWidth6;
+        }
         overflow: hidden;
         background-color: pink;
         margin: 0 auto;
@@ -115,7 +154,7 @@ $sliderWidth: 600px;
     &__title {
         margin: 0 0 20px 0;
         font-size: 18px;
-        color: #353738;
+        color: #848789;
         font-weight: 700;
         span {
             font-weight: 300;
@@ -133,7 +172,24 @@ $sliderWidth: 600px;
     &__buttons {
         display: flex;
         position: absolute;
-        width: $sliderWidth;
+        @media (min-width: 1400px) {
+            width: $sliderWidth1;
+        }
+        @media (max-width: 1400px) {
+            width: $sliderWidth2;
+        }
+        @media (max-width: 1200px) {
+            width: $sliderWidth3;
+        }
+        @media (max-width: 992px) {
+            width: $sliderWidth4;
+        }
+        @media (max-width: 768px) {
+            width: $sliderWidth5;
+        }
+        @media (max-width: 576px) {
+            width: $sliderWidth6;
+        }
         top: 50%;
         .btn {
             width: 30px;
@@ -158,7 +214,24 @@ $sliderWidth: 600px;
         }
     }
     .btns-radio {
-        width: $sliderWidth;
+        @media (min-width: 1400px) {
+            width: $sliderWidth1;
+        }
+        @media (max-width: 1400px) {
+            width: $sliderWidth2;
+        }
+        @media (max-width: 1200px) {
+            width: $sliderWidth3;
+        }
+        @media (max-width: 992px) {
+            width: $sliderWidth4;
+        }
+        @media (max-width: 768px) {
+            width: $sliderWidth5;
+        }
+        @media (max-width: 576px) {
+            width: $sliderWidth6;
+        }
         margin: 10px auto 0 auto;
         display: flex;
         justify-content: center;

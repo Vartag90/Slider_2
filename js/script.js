@@ -10,17 +10,17 @@ const sliderItems = parentSlider.querySelectorAll('.slider__item');
 const itemsCount = sliderItems.length;
 const btnPrev = parentSlider.querySelector('.btn-prev');
 const btnNext = parentSlider.querySelector('.btn-next');
-const itemWidth = sliderContainer.offsetWidth / slidesToShow;
-const movePosition = itemWidth * slidesToScroll;
+let itemWidth = sliderContainer.offsetWidth / slidesToShow;
+let movePosition = itemWidth * slidesToScroll;
 const radioBlock = parentSlider.querySelector("form");
 let counter = 0;
 const timeForAChange = 1500;
 let timerId;
 
+// sliderItems.forEach(function(elem) {
+//     elem.style.minWidth = `${itemWidth}px`;
+// });
 
-sliderItems.forEach(function(elem) {
-    elem.style.minWidth = `${itemWidth}px`;
-});
 
 //add radio buttons
 function addRadio() {
@@ -34,6 +34,18 @@ function addRadio() {
     }
 };
 
+function checkWidth() {
+    itemWidth = sliderContainer.offsetWidth / slidesToShow;
+    position = 0;
+    movePosition = itemWidth * slidesToScroll;
+    sliderBody.style.transform = `translateX(0px)`;
+    radioBlock.children[0].checked = true;
+    counter = 0;
+    sliderItems.forEach(function(elem) {
+        elem.style.minWidth = `${itemWidth}px`;
+    });
+}
+
 
 function next() {
     const itemLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
@@ -41,7 +53,6 @@ function next() {
     counter += slidesToScroll;
     if (radioBlock.children[counter / slidesToScroll]) {
         radioBlock.children[counter / slidesToScroll].checked = true;
-
     }
     setPosition();
     checkPosition();
@@ -115,9 +126,16 @@ function addSettings() {
 }
 
 window.addEventListener('load', function() {
-    addSettings();
     addRadio();
+    checkWidth();
+    addSettings();
+
+
     radioBlock.children[0].checked = true;
+});
+
+window.addEventListener('resize', function() {
+    checkWidth();
 });
 
 window.addEventListener('focus', function() {
@@ -125,6 +143,7 @@ window.addEventListener('focus', function() {
     clearInterval(timerId);
     addSettings();
 });
+
 
 
 

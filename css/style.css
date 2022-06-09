@@ -87,8 +87,43 @@ h6 {
 }
 
 .container {
-  max-width: 1030px;
   margin: 0 auto;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 400px;
+  }
 }
 
 .slider {
@@ -96,10 +131,45 @@ h6 {
 }
 
 .slider__container {
-  width: 600px;
   overflow: hidden;
   background-color: pink;
   margin: 0 auto;
+}
+
+@media (min-width: 1400px) {
+  .slider__container {
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .slider__container {
+    width: 900px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slider__container {
+    width: 700px;
+  }
+}
+
+@media (max-width: 992px) {
+  .slider__container {
+    width: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider__container {
+    width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .slider__container {
+    width: 350px;
+  }
 }
 
 .slider__body {
@@ -123,7 +193,7 @@ h6 {
 .slider__title {
   margin: 0 0 20px 0;
   font-size: 18px;
-  color: #353738;
+  color: #848789;
   font-weight: 700;
 }
 
@@ -146,8 +216,43 @@ h6 {
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  width: 600px;
   top: 50%;
+}
+
+@media (min-width: 1400px) {
+  .slider__buttons {
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .slider__buttons {
+    width: 900px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slider__buttons {
+    width: 700px;
+  }
+}
+
+@media (max-width: 992px) {
+  .slider__buttons {
+    width: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider__buttons {
+    width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .slider__buttons {
+    width: 350px;
+  }
 }
 
 .slider__buttons .btn {
@@ -178,7 +283,6 @@ h6 {
 }
 
 .slider .btns-radio {
-  width: 600px;
   margin: 10px auto 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -186,6 +290,42 @@ h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media (min-width: 1400px) {
+  .slider .btns-radio {
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .slider .btns-radio {
+    width: 900px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slider .btns-radio {
+    width: 700px;
+  }
+}
+
+@media (max-width: 992px) {
+  .slider .btns-radio {
+    width: 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider .btns-radio {
+    width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .slider .btns-radio {
+    width: 350px;
+  }
 }
 
 .slider .btns-radio input:not(:last-child) {

@@ -12,20 +12,37 @@ const btnPrev = parentSlider.querySelector('.btn-prev');
 const btnNext = parentSlider.querySelector('.btn-next');
 const itemWidth = sliderContainer.offsetWidth / slidesToShow;
 const movePosition = itemWidth * slidesToScroll;
-let radioButtons = parentSlider.querySelectorAll("input[type='radio']");
+const radioBlock = parentSlider.querySelector("form");
 let counter = 0;
+const timeForAChange = 1500;
 let timerId;
-let pausedId;;
-//radioButtons[0].attr('checked', true);
+
 
 sliderItems.forEach(function(elem) {
     elem.style.minWidth = `${itemWidth}px`;
-})
+});
+
+//add radio buttons
+function addRadio() {
+    for (let i = 0; i < itemsCount / slidesToScroll; i++) {
+        let radioButton = document.createElement('input');
+        radioButton.type = 'radio';
+        radioButton.name = 'slider-buttons';
+        radioButton.id = i;
+        radioButton.value = i;
+        radioBlock.appendChild(radioButton);
+    }
+};
+
 
 function next() {
     const itemLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
     position -= itemLeft >= slidesToScroll ? movePosition : itemLeft * itemWidth;
     counter += slidesToScroll;
+    if (radioBlock.children[counter / slidesToScroll]) {
+        radioBlock.children[counter / slidesToScroll].checked = true;
+
+    }
     setPosition();
     checkPosition();
 }
@@ -34,6 +51,9 @@ function prev() {
     const itemLeft = Math.abs(position) / itemWidth;
     position += itemLeft >= slidesToScroll ? movePosition : itemLeft * itemWidth;
     counter -= slidesToScroll;
+    if (radioBlock.children[counter / slidesToScroll]) {
+        radioBlock.children[counter / slidesToScroll].checked = true;
+    }
     if (counter < 0) {
         counter = 0;
     }
@@ -42,30 +62,26 @@ function prev() {
 }
 
 
-function paused() {
-    this.removeEventListener('click', paused);
-    clearInterval(timerId);
-    clearTimeout(pausedId);
-    return pausedId = setTimeout(function() {
-        clearInterval(timerId);
-        timerId = setInterval(next, 1000);
-        this.addEventListener('click', paused);
-    }, 5000);
-}
+// function paused() {
+//     this.removeEventListener('click', paused);
+//     clearInterval(timerId);
+//     clearTimeout(pausedId);
+//     return pausedId = setTimeout(function() {
+//         clearInterval(timerId);
+//         timerId = setInterval(next, 1000);
+//         this.addEventListener('click', paused);
+//     }, 5000);
+// }
 
 const setPosition = () => sliderBody.style.transform = `translateX(${position}px)`;
 
 const checkPosition = () => {
-
-
-    console.log(counter);
-    //console.log(radioButtons[counter].id);
-    //console.log(radioButtons[counter]);
     if (counter < slidesToShow) {
         if (counter >= itemsCount - slidesToShow + 1) {
             sliderBody.style.transform = `translateX(0px)`;
             position = 0;
             counter = 0;
+            radioBlock.children[0].checked = true;
             //imediatle move to first slide
             sliderBody.style.transition = 0 + `s`;
 
@@ -78,6 +94,7 @@ const checkPosition = () => {
             sliderBody.style.transform = `translateX(0px)`;
             position = 0;
             counter = 0;
+            radioBlock.children[0].checked = true;
             //imediatle move to first slide
             sliderBody.style.transition = 0 + `s`;
 
@@ -90,20 +107,21 @@ const checkPosition = () => {
 
 
 function addSettings() {
-    timerId = setInterval(next, 1000);
+    timerId = setInterval(next, timeForAChange);
     btnNext.addEventListener('click', next);
-    btnNext.addEventListener('click', paused);
-    btnPrev.addEventListener('click', paused);
+    // btnNext.addEventListener('click', paused);
+    // btnPrev.addEventListener('click', paused);
     btnPrev.addEventListener('click', prev);
 }
 
 window.addEventListener('load', function() {
     addSettings();
-    //addRadio();
+    addRadio();
+    radioBlock.children[0].checked = true;
 });
 
 window.addEventListener('focus', function() {
-    clearTimeout(pausedId);
+    //clearTimeout(pausedId);
     clearInterval(timerId);
     addSettings();
 });
@@ -111,25 +129,8 @@ window.addEventListener('focus', function() {
 
 
 window.addEventListener('blur', function() {
-    clearTimeout(pausedId);
+    //clearTimeout(pausedId);
     clearInterval(timerId);
 });
 
 checkPosition();
-
-(function addRadio() {
-    let radioBlock = document.createElement('div');
-    parentSlider.appendChild(radioBlock);
-
-    for (let i = 0; i < itemsCount; i++) {
-        let radioButton = document.createElement('input');
-        radioButton.type = 'radio';
-        radioButton.name = 'slider-buttons';
-        radioButton.id = i;
-        radioButton.value = i;
-        radioBlock.appendChild(radioButton);
-        //console.log(i);
-        //console.log(radioButton.id);
-    }
-    radioBlock.className = 'btns-radio';
-})();
